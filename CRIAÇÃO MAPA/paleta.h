@@ -1,9 +1,7 @@
 #ifndef PALETA_H
 #define PALETA_H
-
 #include <string>
 #include <vector>
-using namespace std;
 
 struct Cor {
     int r;
@@ -13,17 +11,15 @@ struct Cor {
 
 class Paleta {
 private:
-    vector<Cor> cores;
+    std::vector<Cor> cores;
+    int hexParaDecimal(const std::string& hex); 
 
 public:
     Paleta();
-    Paleta(const string& nomeArquivo);
+    Paleta(const std::string& nomeArquivo);
     void adicionarCor(const Cor& cor);
     int obterTamanho() const;
     Cor obterCor(int indice) const;
-
-private:
-    int hexParaDecimal(const string& hex);
 };
 
 #endif

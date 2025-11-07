@@ -1,5 +1,6 @@
 #ifndef SEQUENCIA_H
 #define SEQUENCIA_H
+#include <stdexcept>
 
 template <typename T>
 class Sequencia {
@@ -109,7 +110,7 @@ void Sequencia<T>::remover() {
 template <typename T>
 T& Sequencia<T>::obter(int indice) {
     if (indice < 0 || indice >= quantidade) {
-        throw std::out_of_range() ;
+        throw std::out_of_range("Índice inválido em alterar()") ;
     }
     return dados[indice];
 }
@@ -117,7 +118,7 @@ T& Sequencia<T>::obter(int indice) {
 template <typename T>
 const T& Sequencia<T>::obter(int indice) const {
     if (indice < 0 || indice >= quantidade) {
-        throw std::out_of_range();
+        throw std::out_of_range("Índice inválido em alterar()");
     }
     return dados[indice];
 }
@@ -125,7 +126,7 @@ const T& Sequencia<T>::obter(int indice) const {
 template <typename T>
 void Sequencia<T>::alterar(int indice, const T& elemento) {
     if (indice < 0 || indice >= quantidade) {
-        throw std::out_of_range();
+        throw std::out_of_range("Índice inválido em alterar()");
     }
     dados[indice] = elemento;
 }
