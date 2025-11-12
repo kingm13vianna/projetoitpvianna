@@ -2,9 +2,6 @@
 #include "../doctest.h"
 #include "paleta.h"
 
-
-
-
 TEST_CASE("Testa a criação de uma paleta padrão (sem nenhuma cor)") {
     Paleta paleta;
     CHECK(paleta.obterTamanho() == 0);

@@ -1,0 +1,21 @@
+--2025-11-10 11:23:34--  https://raw.githubusercontent.com/doctest/doctest/master/doctest/doctest.h
+Resolvendo raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8001::154, 2606:50c0:8003::154, 2606:50c0:8002::154, ...
+Conectando-se a raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8001::154|:443... falhou: Tempo esgotado para conexão.
+Conectando-se a raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8003::154|:443... falhou: Tempo esgotado para conexão.
+Conectando-se a raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8002::154|:443... falhou: Tempo esgotado para conexão.
+Conectando-se a raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8000::154|:443... falhou: Tempo esgotado para conexão.
+Conectando-se a raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... conectado.
+A requisição HTTP foi enviada, aguardando resposta... 200 OK
+Tamanho: 323200 (316K) [text/plain]
+Salvando em: “doctest.h”
+
+     0K .......... .......... .......... .......... .......... 15% 1,25M 0s
+    50K .......... .......... .......... .......... .......... 31% 5,89M 0s
+   100K .......... .......... .......... .......... .......... 47% 12,4M 0s
+   150K .......... .......... .......... .......... .......... 63% 11,7M 0s
+   200K .......... .......... .......... .......... .......... 79% 12,5M 0s
+   250K .......... .......... .......... .......... .......... 95% 19,1M 0s
+   300K .......... .....                                      100% 8,96M=0,06s
+
+2025-11-10 11:32:17 (4,85 MB/s) - “doctest.h” salvo [323200/323200]
+
