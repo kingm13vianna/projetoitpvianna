@@ -97,12 +97,8 @@ bool Imagem::salvarPPM(const string& nomeArquivo) const {
         for (int x = 0; x < largura; x++) {
             arquivo << mapa[y][x].r << " " 
                     << mapa[y][x].g << " " 
-                    << mapa[y][x].b;
-            if (x < largura - 1) {
-                arquivo << " ";
-            }
+                    << mapa[y][x].b << "\n";  
         }
-        arquivo << "\n";
     }
 
     arquivo.close();
