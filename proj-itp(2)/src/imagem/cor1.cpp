@@ -2,15 +2,15 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "et1.h"
+#include "cor1.h"
 
 using namespace std;
 
-//Cor
+//cor
 Cor::Cor() : r(0), g(0), b(0) {}
 Cor::Cor(int r_, int g_, int b_) : r(r_), g(g_), b(b_) {}
 
-//Paleta
+//paleta
 Paleta::Paleta() = default;
 
 Paleta::Paleta(const string& nomeArquivo) {
@@ -24,7 +24,7 @@ Paleta::Paleta(const string& nomeArquivo) {
     while (getline(arquivo, linha)) {
         if (linha.empty()) continue;
 
-        //remove '#' se existir
+        //remove '#'
         if (linha[0] == '#') linha = linha.substr(1);
 
         //converte hexadecimal para decimal
@@ -39,7 +39,7 @@ Paleta::Paleta(const string& nomeArquivo) {
 }
 
 void Paleta::adicionarCor(const Cor& cor) {
-    cores.push_back(cor);  //adiciona dinamicamente
+    cores.push_back(cor);//adiciona dinamicamente
 }
 
 int Paleta::obterTamanho() const {

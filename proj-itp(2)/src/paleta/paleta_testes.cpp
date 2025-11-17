@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "../doctest.h"
-#include "paleta.h"
+#include "et1.h"
 
 TEST_CASE("Testa a criação de uma paleta padrão (sem nenhuma cor)") {
     Paleta paleta;
