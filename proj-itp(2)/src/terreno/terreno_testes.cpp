@@ -1,17 +1,17 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "../doctest.h"
-#include "terreno.h"
+#include "ter1.h"
 
 TEST_CASE("Testa a criação de um terreno de uma única célula") {
-  Terreno terreno(0); // 2^0 + 1 = 1
-  CHECK(terreno.obterLargura() == 1);
-  CHECK(terreno.obterProfundidade() == 1);
+  MapaAltitudes terreno(0); // 2^0 + 1 = 1
+  CHECK(terreno.obterNumLinhas() == 1);
+  CHECK(terreno.obterNumColunas() == 1);
 }
 
 TEST_CASE("Testa a geração aleatória de altitudes") {
-  Terreno terreno(2);
-  CHECK(terreno.obterLargura() == 5);
-  CHECK(terreno.obterProfundidade() == 5);
+  MapaAltitudes terreno(2);
+  CHECK(terreno.obterNumLinhas() == 5);
+  CHECK(terreno.obterNumColunas() == 5);
 }
 
 
