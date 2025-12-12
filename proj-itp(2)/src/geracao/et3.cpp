@@ -15,7 +15,7 @@ MapaAltitudes::MapaAltitudes() : altitudes(nullptr), tamanho(0), N(0) {
 }
 
 //construtor com tamanho
-MapaAltitudes::MapaAltitudes(int n) : N(n) {
+MapaAltitudes::MapaAltitudes(int n) : altitudes(nullptr), N(n) {
     srand(time(nullptr));
     tamanho = pow(2, n) + 1;
     inicializarMatriz();
@@ -146,26 +146,57 @@ void MapaAltitudes::etapaSquare(int x, int y, int passo, float amplitude) {
     }
 }
 
+// //aplica um passo completo do algoritmo
+
+// void MapaAltitudes::etapaSquare(int x, int y, int passo, float amplitude) {
+//     int meio = passo / 2;
+//     int contador = 0;
+//     float soma = 0.0f;
+    
+//     // VERIFICAÇÃO COMPLETA: Ambos índices (linha E coluna)
+//     if (y - meio >= 0 && x >= 0 && x < tamanho) {
+//         soma += altitudes[y - meio][x];
+//         contador++;
+//     }
+//     if (y + meio < tamanho && x >= 0 && x < tamanho) {
+//         soma += altitudes[y + meio][x];
+//         contador++;
+//     }
+//     if (x - meio >= 0 && y >= 0 && y < tamanho) {
+//         soma += altitudes[y][x - meio];
+//         contador++;
+//     }
+//     if (x + meio < tamanho && y >= 0 && y < tamanho) {
+//         soma += altitudes[y][x + meio];
+//         contador++;
+//     }
+    
+//     if (contador > 0) {
+//         float media = soma / contador;
+//         altitudes[y][x] = media + gerarDeslocamentoAleatorio(amplitude);
+//     }
+// }
+
 //aplica um passo completo do algoritmo
-void MapaAltitudes::aplicarDiamondSquarePasso(int passo, float& amplitude, float rugosidade) {
-    //rtapa Diamond
+void MapaAltitudes::aplicarDiamondSquarePasso(int passo, float amplitude) {
+    // etapa Diamond
     for (int y = passo/2; y < tamanho; y += passo) {
         for (int x = passo/2; x < tamanho; x += passo) {
             etapaDiamond(x, y, passo, amplitude);
         }
     }
     
-    //rtapa Square
+    // etapa Square
     for (int y = 0; y < tamanho; y += passo/2) {
         int inicioX = (y + passo/2) % passo;
+        if (passo/2 <= 0) break;  // Evita loop infinito
         for (int x = inicioX; x < tamanho; x += passo) {
             etapaSquare(x, y, passo, amplitude);
         }
     }
-    
-    //reduz amplitude
-    amplitude *= rugosidade;
 }
+
+
 
 //hera o mapa completo
 void MapaAltitudes::gerarMapa(float rugosidade) {
@@ -184,33 +215,40 @@ void MapaAltitudes::gerarMapa(float rugosidade) {
     
     float amplitude = amplitudeInicial;
     int passo = tamanho - 1;
-    
+
     //aplica algoritmo iterativamente
     while (passo > 1) {
-        aplicarDiamondSquarePasso(passo, amplitude, rugosidade);
+        aplicarDiamondSquarePasso(passo, amplitude);
+        amplitude *= rugosidade;
         passo /= 2;
     }
+
+    // void MapaAltitudes::aplicarDiamondSquarePasso(int passo, float& amplitude, float rugosidade) {
+    // Etapa Diamond - com verificação
+    // for (int y = passo/2; y < tamanho; y += passo) {
+    //     for (int x = passo/2; x < tamanho; x += passo) {
+    //         if (x < tamanho && y < tamanho) {  // Verificação extra
+    //             etapaDiamond(x, y, passo, amplitude);
+    //         }
+    //     }
+    // }
     
-    //normaliza para [0, 1]
-    float minAlt = altitudes[0][0];
-    float maxAlt = altitudes[0][0];
+    // // Etapa Square - CORREÇÃO CRÍTICA
+    // for (int y = 0; y < tamanho; y += passo/2) {
+    //     // CUIDADO: passo/2 pode ser 0 se passo < 2
+    //     if (passo/2 <= 0) break;  // Evita loop infinito
+        
+    //     int inicioX = (y % (passo/2 == 0 ? 1 : passo/2)) == 0 ? passo/2 : 0;
+    //     for (int x = inicioX; x < tamanho; x += passo) {
+    //         if (x < tamanho && y < tamanho) {  // Verificação extra
+    //             etapaSquare(x, y, passo, amplitude);
+    //         }
+    //     }
+    // }
+    // amplitude *= rugosidade;
     
-    for (int i = 0; i < tamanho; i++) {
-        for (int j = 0; j < tamanho; j++) {
-            if (altitudes[i][j] < minAlt) minAlt = altitudes[i][j];
-            if (altitudes[i][j] > maxAlt) maxAlt = altitudes[i][j];
-        }
-    }
-    
-    float range = maxAlt - minAlt;
-    if (range > 0.0001f) {
-        for (int i = 0; i < tamanho; i++) {
-            for (int j = 0; j < tamanho; j++) {
-                altitudes[i][j] = (altitudes[i][j] - minAlt) / range;
-            }
-        }
-    }
 }
+        
 
 //metodos de acesso
 float MapaAltitudes::obterAltitude(int linha, int coluna) const {

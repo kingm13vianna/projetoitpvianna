@@ -118,18 +118,11 @@ int main() {
     cout << "Digite a rugosidade (0.1 a 0.9, recomendado 0.5): ";
     cin >> rugosidade;
 
-    mapa.gerarMapa(rugosidade);
-
-    cout << "Mapa gerado: " << mapa.obterNumLinhas()
-         << "x" << mapa.obterNumColunas() << endl;
-    cout << "Altitude min: " << mapa.getMinAltitude()
-         << ", max: " << mapa.getMaxAltitude() << endl;
-
-    char opcaoSombreamento;
+    string opcaoSombreamento;
     cout << "\nAplicar sombreamento? (s/n): ";
     cin >> opcaoSombreamento;
 
-    bool usarSombreamento = (opcaoSombreamento == 's' || opcaoSombreamento == 'S');
+    bool usarSombreamento = (opcaoSombreamento == "s"|| opcaoSombreamento == "S");
     float fatorSombreamento = 0.5f;
 
     if (usarSombreamento) {
@@ -138,6 +131,15 @@ int main() {
         fatorSombreamento = max(0.1f, min(0.9f, fatorSombreamento));
     }
 
+
+    mapa.gerarMapa(rugosidade);
+
+    cout << "Mapa gerado: " << mapa.obterNumLinhas()
+         << "x" << mapa.obterNumColunas() << endl;
+    cout << "Altitude min: " << mapa.getMinAltitude()
+         << ", max: " << mapa.getMaxAltitude() << endl;
+
+    
     cout << "\nGerando imagem...\n";
 
     Imagem* imagem = mapa.gerarImagem(paleta, usarSombreamento, fatorSombreamento);

@@ -24,7 +24,7 @@ private:
 protected:
     void etapaDiamond(int x, int y, int passo, float amplitude);
     void etapaSquare(int x, int y, int passo, float amplitude);
-    void aplicarDiamondSquarePasso(int passo, float& amplitude, float rugosidade);
+    void aplicarDiamondSquarePasso(int passo, float amplitude);
     
 public:
     //construtores e destrutor
